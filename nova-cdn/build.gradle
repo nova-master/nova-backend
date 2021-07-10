@@ -8,6 +8,8 @@ plugins {
 dependencies {
 //  api project(':nova-web')
   api project(':nova-data-jpa')
+  annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+  annotationProcessor 'org.springframework:spring-context-indexer'
 }
 
 //hibernate {

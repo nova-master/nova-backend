@@ -11,4 +11,6 @@ dependencies {
   optional 'org.springframework.data:spring-data-commons'
   optional 'org.springframework:spring-tx'
   optional 'org.springframework.boot:spring-boot-autoconfigure'
+  annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+  annotationProcessor 'org.springframework:spring-context-indexer'
 }
