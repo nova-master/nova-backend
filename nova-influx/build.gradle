@@ -1,0 +1,20 @@
+plugins {
+  id 'java'
+}
+
+group 'net.getnova.framework'
+version 'edge'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+  annotationProcessor 'org.springframework:spring-context-indexer'
+}
+
+test {
+  useJUnitPlatform()
+}

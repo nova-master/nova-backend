@@ -23,3 +23,5 @@ include(
   'nova-core',
   'nova-data-jpa'
 )
+include 'nova-influx'
+
