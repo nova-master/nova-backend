@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public class ValidationException extends HttpException {
 
-  private static final String TYPE = "VALIDATION_FAILED";
+  private static final String TYPE = "BAD_INPUT";
   private static final String MESSAGE_FORMAT = "Expected property \"%s\" to be in state \"%s\".";
 
   private final String property;

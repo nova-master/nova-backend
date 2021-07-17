@@ -2,6 +2,7 @@ package net.getnova.framework.core;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import lombok.EqualsAndHashCode;
 import net.getnova.framework.core.exception.HttpException;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties.Resources;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RequestPredicates;
@@ -18,6 +20,7 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
 
 public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHandler {
@@ -62,6 +65,27 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
         exception.getAdditionalProperties()
       );
     }
+    else if (cause instanceof ServerWebInputException) {
+      final ServerWebInputException exception = (ServerWebInputException) cause;
+
+      final Optional<String> property = Optional.ofNullable(exception.getMethodParameter())
+        .map(MethodParameter::getParameterName);
+
+      if (property.isPresent()) {
+        return new HttpError(
+          exception.getStatus(),
+          "BAD_INPUT",
+          exception.getReason(),
+          Map.of("property", property.get())
+        );
+      }
+
+      return new HttpError(
+        exception.getStatus(),
+        "BAD_INPUT",
+        exception.getReason()
+      );
+    }
     else if (cause instanceof ResponseStatusException) {
       final ResponseStatusException exception = (ResponseStatusException) cause;
 
@@ -71,7 +95,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
 
       return new HttpError(
         exception.getStatus(),
-        "BASIC",
+        "UNKNOWN",
         exception.getReason()
       );
     }
