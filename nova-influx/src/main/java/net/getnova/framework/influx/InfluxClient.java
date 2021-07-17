@@ -150,7 +150,7 @@ public class InfluxClient {
       this.getTags(header, data),
       Field.parse(
         this.getColumn(header, data, "_field"),
-        this.getColumn(header, data, "_value"),
+        this.getColumn(header, data, "_value").strip(),
         clazz
       ),
       Instant.parse(this.getColumn(header, data, "_time"))

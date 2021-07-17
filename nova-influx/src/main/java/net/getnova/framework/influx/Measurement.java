@@ -94,15 +94,15 @@ public class Measurement<F extends Field> {
   @EqualsAndHashCode
   public static final class DoubleField extends Field {
 
-    private final double value;
+    private final Double value;
 
-    public DoubleField(final String key, final double value) {
+    public DoubleField(final String key, final Double value) {
       super(key);
       this.value = value;
     }
 
     public DoubleField(final String key, final String value) {
-      this(key, Double.parseDouble(value));
+      this(key, value.isEmpty() ? null : Double.parseDouble(value));
     }
 
     @Override
@@ -116,15 +116,15 @@ public class Measurement<F extends Field> {
   @EqualsAndHashCode
   public static final class LongField extends Field {
 
-    private final long value;
+    private final Long value;
 
-    public LongField(final String key, final long value) {
+    public LongField(final String key, final Long value) {
       super(key);
       this.value = value;
     }
 
     public LongField(final String key, final String value) {
-      this(key, Long.parseLong(value));
+      this(key, value.isEmpty() ? null : Long.parseLong(value));
     }
 
     @Override
@@ -165,13 +165,13 @@ public class Measurement<F extends Field> {
 
     private final boolean value;
 
-    public BooleanField(final String key, final boolean value) {
+    public BooleanField(final String key, final Boolean value) {
       super(key);
       this.value = value;
     }
 
     public BooleanField(final String key, final String value) {
-      this(key, value.charAt(0) == T);
+      this(key, value.isEmpty() ? null : value.charAt(0) == T);
     }
 
     @Override
