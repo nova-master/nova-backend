@@ -84,6 +84,12 @@ public class InfluxClient {
       .transform(lines -> parseCsv(lines, clazz));
   }
 
+  public Mono<InfluxHealth> health() {
+    return this.client.get()
+      .uri(this.properties.getUri() + "/health")
+      .exchangeToMono(response -> response.bodyToMono(InfluxHealth.class));
+  }
+
   public String getBucket() {
     return this.properties.getBucket();
   }
