@@ -1,7 +1,7 @@
 buildscript {
   ext {
     springBootVersion = '2.4.3'
-    freefairVersion = '6.1.0'
+    freefairVersion = '6.2.0'
   }
 }
 
