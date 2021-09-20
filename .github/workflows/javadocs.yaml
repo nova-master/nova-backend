@@ -31,7 +31,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: temurin
-          java-version: 15
+          java-version: ${{ env.JAVA_VERSION }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -60,7 +60,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: temurin
-          java-version: 15
+          java-version: ${{ env.JAVA_VERSION }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
