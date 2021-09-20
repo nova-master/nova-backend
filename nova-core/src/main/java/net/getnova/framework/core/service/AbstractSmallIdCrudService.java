@@ -56,6 +56,20 @@ public abstract class AbstractSmallIdCrudService<D, S, I, M, SM, P>
   }
 
   @Override
+  public D merge(final I id, final D dto) {
+    ValidationUtils.validateProperties(dto);
+
+    final P pId = this.idConverter.toModel(id);
+
+    final M model = this.repository.findById(pId)
+      .orElseThrow(() -> new NotFoundException(this.name));
+
+    this.converter.merge(model, dto);
+
+    return this.converter.toDto(model);
+  }
+
+  @Override
   public void delete(final I id) {
     final P pId = this.idConverter.toModel(id);
 

@@ -44,6 +44,18 @@ public abstract class AbstractCommonIdCrudService<D, I, M> extends AbstractCrudS
   }
 
   @Override
+  public D merge(I id, D dto) {
+ValidationUtils.validateProperties(dto);
+
+    final M model = this.repository.findById(id)
+      .orElseThrow(() -> new NotFoundException(this.name));
+
+    this.converter.merge(model, dto);
+
+    return this.converter.toDto(model);
+  }
+
+  @Override
   public void delete(final I id) {
     if (!this.repository.existsById(id)) {
       throw new NotFoundException(this.name);

@@ -14,5 +14,7 @@ public interface SmallCrudService<D, S, I> {
 
   D save(I id, D dto);
 
+  D merge(I id, D dto);
+
   void delete(I id);
 }

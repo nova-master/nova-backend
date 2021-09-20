@@ -44,5 +44,8 @@ public abstract class AbstractSmallCrudService<D, S, I, M, SM, P> implements Sma
   public abstract D save(I id, D dto);
 
   @Override
+  public abstract D merge(I id, D dto);
+
+  @Override
   public abstract void delete(I id);
 }

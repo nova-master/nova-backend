@@ -1,8 +1,8 @@
 package net.getnova.framework.core.service;
 
 import net.getnova.framework.core.Converter;
-import net.getnova.framework.core.Validatable;
 import net.getnova.framework.core.exception.NotFoundException;
+import net.getnova.framework.core.utils.ValidationUtils;
 import org.springframework.data.repository.CrudRepository;
 
 public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
@@ -36,14 +36,24 @@ public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
 
   @Override
   public D save(final I id, final D dto) {
-    if (dto instanceof Validatable) {
-      ((Validatable) dto).validate();
-    }
+    ValidationUtils.validate(dto);
 
     final M model = this.repository.findById(id)
       .orElseThrow(() -> new NotFoundException(this.name));
 
     this.converter.override(model, dto);
+
+    return this.converter.toDto(model);
+  }
+
+  @Override
+  public D merge(final I id, final D dto) {
+    ValidationUtils.validateProperties(dto);
+
+    final M model = this.repository.findById(id)
+      .orElseThrow(() -> new NotFoundException(this.name));
+
+    this.converter.merge(model, dto);
 
     return this.converter.toDto(model);
   }

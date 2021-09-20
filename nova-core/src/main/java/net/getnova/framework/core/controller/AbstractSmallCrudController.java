@@ -36,6 +36,12 @@ public class AbstractSmallCrudController<D, S, I> implements SmallCrudController
 
   @Override
   @Transactional
+  public D patch(final I id, final D dto) {
+    return this.service.merge(id, dto);
+  }
+
+  @Override
+  @Transactional
   public void delete(final I id) {
     this.service.delete(id);
   }
