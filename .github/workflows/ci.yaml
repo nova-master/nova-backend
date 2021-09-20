@@ -173,9 +173,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Checkout maven repo
-        run: git clone https://github.com/${{ format('{0}/maven', github.repository_owner) }}.git /tmp/repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository_owner }}/maven
+          path: /tmp/repo
 
       - uses: actions/cache@v2
         with:
