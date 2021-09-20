@@ -7,6 +7,9 @@ on:
       - v*
     paths-ignore: [ '**.md' ]
 
+env:
+  JAVA_VERSION: 11
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -25,8 +28,9 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Set up JDK 15
-        uses: actions/setup-java@v2.3.0
+        uses: actions/setup-java@v2
         with:
+          distribution: temurin
           java-version: 15
 
       - name: Grant execute permission for gradlew
@@ -53,8 +57,9 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Set up JDK 15
-        uses: actions/setup-java@v2.3.0
+        uses: actions/setup-java@v2
         with:
+          distribution: temurin
           java-version: 15
 
       - name: Grant execute permission for gradlew
