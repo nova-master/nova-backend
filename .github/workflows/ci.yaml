@@ -178,7 +178,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${{ github.repository_owner }}/maven
-          path: /tmp/repo
+          path: ./mvn-repo
 
       - uses: actions/cache@v2
         with:
@@ -206,7 +206,7 @@ jobs:
         with:
           repository-name: ${{ format('{0}/maven', github.repository_owner) }}
           branch: main # The branch the action should deploy to.
-          folder: /tmp/repo # The folder the action should deploy.
+          folder: ./mvn-repo # The folder the action should deploy.
           clean: false
 
           token: ${{ secrets.GH_PAT_PACKAGES }}
