@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import net.getnova.framework.core.Converter;
 import net.getnova.framework.core.utils.ValidationUtils;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 public abstract class AbstractCrudService<D, I, M, P> implements CrudService<D, I> {
@@ -15,6 +16,7 @@ public abstract class AbstractCrudService<D, I, M, P> implements CrudService<D, 
   protected final Converter<M, D> converter;
 
   @Override
+  @Transactional(readOnly = true)
   public Set<D> findAll() {
     return StreamSupport.stream(this.repository.findAll().spliterator(), false)
       .map(this.converter::toDto)
@@ -22,12 +24,15 @@ public abstract class AbstractCrudService<D, I, M, P> implements CrudService<D, 
   }
 
   @Override
+  @Transactional(readOnly = true)
   public abstract D findById(I id);
 
   @Override
+  @Transactional(readOnly = true)
   public abstract boolean exist(I id);
 
   @Override
+  @Transactional
   public D save(final D dto) {
     ValidationUtils.validate(dto);
 

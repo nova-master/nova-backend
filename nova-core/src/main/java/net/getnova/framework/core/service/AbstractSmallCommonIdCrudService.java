@@ -4,6 +4,7 @@ import net.getnova.framework.core.Converter;
 import net.getnova.framework.core.exception.NotFoundException;
 import net.getnova.framework.core.utils.ValidationUtils;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
   extends AbstractSmallCrudService<D, S, I, M, SM, I> {
@@ -22,6 +23,7 @@ public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
   }
 
   @Override
+  @Transactional(readOnly = true)
   public D findById(final I id) {
     return this.converter.toDto(
       this.repository.findById(id)
@@ -30,11 +32,13 @@ public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean exist(final I id) {
     return this.repository.existsById(id);
   }
 
   @Override
+  @Transactional
   public D save(final I id, final D dto) {
     ValidationUtils.validate(dto);
 
@@ -47,6 +51,7 @@ public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
   }
 
   @Override
+  @Transactional
   public D merge(final I id, final D dto) {
     ValidationUtils.validateProperties(dto);
 
@@ -59,6 +64,7 @@ public abstract class AbstractSmallCommonIdCrudService<D, S, I, M, SM>
   }
 
   @Override
+  @Transactional
   public void delete(final I id) {
     if (!this.repository.existsById(id)) {
       throw new NotFoundException(this.name);

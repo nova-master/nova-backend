@@ -4,6 +4,7 @@ import net.getnova.framework.core.Converter;
 import net.getnova.framework.core.exception.NotFoundException;
 import net.getnova.framework.core.utils.ValidationUtils;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 public abstract class AbstractIdCrudService<D, I, M, P> extends AbstractCrudService<D, I, M, P> {
 
@@ -22,6 +23,7 @@ public abstract class AbstractIdCrudService<D, I, M, P> extends AbstractCrudServ
   }
 
   @Override
+  @Transactional(readOnly = true)
   public D findById(final I id) {
     final P pId = this.idConverter.toModel(id);
 
@@ -32,6 +34,7 @@ public abstract class AbstractIdCrudService<D, I, M, P> extends AbstractCrudServ
   }
 
   @Override
+  @Transactional(readOnly = true)
   public boolean exist(final I id) {
     final P pId = this.idConverter.toModel(id);
 
@@ -39,6 +42,7 @@ public abstract class AbstractIdCrudService<D, I, M, P> extends AbstractCrudServ
   }
 
   @Override
+  @Transactional
   public D save(final I id, final D dto) {
     ValidationUtils.validate(dto);
 
@@ -53,6 +57,7 @@ public abstract class AbstractIdCrudService<D, I, M, P> extends AbstractCrudServ
   }
 
   @Override
+  @Transactional
   public void delete(final I id) {
     final P pId = this.idConverter.toModel(id);
 
