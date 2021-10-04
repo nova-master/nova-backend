@@ -18,10 +18,7 @@ pluginManagement {
 }
 
 rootProject.name = 'nova-framework'
-include(
-  'nova-cdn',
-  'nova-core',
-  'nova-data-jpa'
-)
+include 'nova-cdn'
+include 'nova-core'
+include 'nova-data-jpa'
 include 'nova-influx'
-
