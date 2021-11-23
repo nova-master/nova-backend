@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication.Type;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration;
@@ -31,7 +30,6 @@ public class NovaWebExceptionHandlerConfiguration {
   @Order(-2)
   public ErrorWebExceptionHandler errorWebExceptionHandler(
     final ErrorAttributes errorAttributes,
-    final ResourceProperties resourceProperties,
     final WebProperties webProperties,
     final ApplicationContext applicationContext,
     final ServerProperties serverProperties,
@@ -40,7 +38,7 @@ public class NovaWebExceptionHandlerConfiguration {
   ) {
     final AbstractErrorWebExceptionHandler exceptionHandler = new GlobalErrorWebExceptionHandler(
       errorAttributes,
-      resourceProperties.hasBeenCustomized() ? resourceProperties : webProperties.getResources(),
+      webProperties.getResources(),
       applicationContext,
       serverProperties.getError()
     );
