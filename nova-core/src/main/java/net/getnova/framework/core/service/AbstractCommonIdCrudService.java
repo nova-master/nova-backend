@@ -47,7 +47,7 @@ public abstract class AbstractCommonIdCrudService<D, I, M> extends AbstractCrudS
   }
 
   @Override
-  public D merge(I id, D dto) {
+  public D merge(final I id, final D dto) {
     ValidationUtils.validateProperties(dto);
 
     final M model = this.repository.findById(id)
