@@ -80,7 +80,7 @@ jobs:
           echo "::set-output name=version::$VERSION"
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.6
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           branch: gh-pages
