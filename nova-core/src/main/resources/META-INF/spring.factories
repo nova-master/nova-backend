@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  net.getnova.framework.core.NovaWebExceptionHandlerConfiguration
+  de.m4rc3l.nova.core.NovaWebExceptionHandlerConfiguration

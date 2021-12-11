@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  net.getnova.framework.influx.InfluxConfiguration
+  de.m4rc3l.nova.influx.InfluxConfiguration

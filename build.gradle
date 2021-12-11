@@ -9,7 +9,7 @@ plugins {
   id 'base'
   id 'io.freefair.lombok' version "${freefairVersion}" // apply, because javadoc
   id 'nebula.project' version '8.2.0' apply false
-  id 'io.freefair.git-version' version "${freefairVersion}"
+  id 'com.palantir.git-version' version '0.12.3'
   id 'com.github.spotbugs' version '4.7.5' apply false
   id 'io.freefair.maven-optional' version "${freefairVersion}"
   id 'com.github.jk1.dependency-license-report' version '2.0'
@@ -21,14 +21,14 @@ plugins {
   id 'io.spring.javadoc-aggregate' version '0.0.1'
 }
 
-if (version.toString().endsWith('SNAPSHOT')) {
-  version = 'edge'
-} else if (version.toString().startsWith("v")) {
-  version = version.toString().substring(1)
-}
+def gitVer = gitVersion()
+
+version gitVer.startsWith('v')
+  ? gitVer.substring(1, gitVer.endsWith('.dirty') ? gitVer.length() - 6 : gitVer.length())
+  : 'edge'
 
 allprojects {
-  group 'net.getnova.framework'
+  group 'de.m4rc3l.nova'
 
   repositories {
     mavenCentral()

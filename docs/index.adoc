@@ -23,22 +23,22 @@ image:https://img.shields.io/github/v/tag/getnova/framework?label=latest%20versi
 ----
 repositories {
   mavenCentral {
-    content { excludeGroup('net.getnova.framework') }
+    content { excludeGroup('de.m4rc3l.nova') }
   }
   maven {
     url 'https://raw.githubusercontent.com/getnova/maven/main'
-    content { includeGroup('net.getnova.framework') }
+    content { includeGroup('de.m4rc3l.nova') }
   }
 }
 
 dependencies {
-  implementation 'net.getnova.framework:nova-api:<version>'
-  implementation 'net.getnova.framework:nova-api-rest:<version>'
-  implementation 'net.getnova.framework:nova-api-ws:<version>'
-  implementation 'net.getnova.framework:nova-cdn:<version>'
-  implementation 'net.getnova.framework:nova-core:<version>'
-  implementation 'net.getnova.framework:nova-data-jpa:<version>'
-  implementation 'net.getnova.framework:nova-web:<version>'
+  implementation 'de.m4rc3l.nova:nova-api:<version>'
+  implementation 'de.m4rc3l.nova:nova-api-rest:<version>'
+  implementation 'de.m4rc3l.nova:nova-api-ws:<version>'
+  implementation 'de.m4rc3l.nova:nova-cdn:<version>'
+  implementation 'de.m4rc3l.nova:nova-core:<version>'
+  implementation 'de.m4rc3l.nova:nova-data-jpa:<version>'
+  implementation 'de.m4rc3l.nova:nova-web:<version>'
 }
 ----
 
