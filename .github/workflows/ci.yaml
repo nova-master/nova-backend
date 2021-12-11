@@ -173,11 +173,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Checkout maven repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ github.repository_owner }}/maven
+          repository: marcel-repos/mvn
           path: ./mvn-repo
 
       - uses: actions/cache@v2
@@ -204,7 +204,7 @@ jobs:
       - name: Publish
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
-          repository-name: ${{ format('{0}/maven', github.repository_owner) }}
+          repository-name: marcel-repos/mvn
           branch: main # The branch the action should deploy to.
           folder: ./mvn-repo # The folder the action should deploy.
           clean: false
