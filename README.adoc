@@ -1,7 +1,7 @@
-= Nova Framework
+= Nova
 
-image:https://img.shields.io/github/v/tag/getnova/framework?label=latest%20version&style=flat-square[latest version,link=https://github.com/getnova/framework/releases]
-image:https://img.shields.io/github/workflow/status/getnova/framework/CI?label=CI&style=flat-square[CI,link=https://github.com/getnova/framework/actions]
+image:https://img.shields.io/github/v/tag/MarcelCoding/nova?label=latest%20version&style=flat-square[latest version,link=https://github.com/MarcelCoding/nova/releases]
+image:https://img.shields.io/github/workflow/status/MarcelCoding/nova/CI?label=CI&style=flat-square[CI,link=https://github.com/MarcelCoding/nova/actions]
 
 Nova Framework is a framework on top of spring boot.
 It aims to provide nice additions to the spring ecosystem.
@@ -17,7 +17,7 @@ Nova aims to provide out of the box compatibility for https://github.com/spring-
 
 Currently, the latest version is:
 
-image:https://img.shields.io/github/v/tag/getnova/framework?label=latest%20version&style=flat-square[latest version,link=https://github.com/getnova/framework/releases]
+image:https://img.shields.io/github/v/tag/MarcelCoding/nova?label=latest%20version&style=flat-square[latest version,link=https://github.com/MarcelCoding/nova/releases]
 
 [source,groovy]
 ----
@@ -48,7 +48,7 @@ See deployment for notes on how to deploy the project on a live system.
 What things you need to install the software and how to install them
 
 * a Java IDE (https://www.jetbrains.com/idea/[IntelliJ IDEA])
-* https://adoptopenjdk.net/index.html[JDK 11] or higher
+* https://adoptium.net/[JDK 17] or higher
 * https://git-scm.com/[Git]
 
 === Installing
@@ -57,7 +57,7 @@ A step by step series of examples that tell you how to get a development env run
 
 [source,bash]
 ----
-git clone https://github.com/getnova/framework.git
+git clone https://github.com/MarcelCoding/nova.git
 ----
 
 Then you can open it with you IDE and start contributing.
@@ -73,7 +73,7 @@ Then you can open it with you IDE and start contributing.
 |Licenses
 
 |From 08.08.2020 link:LICENSE[AGPL v3]
-|Upto 07.08.2020 https://github.com/getnova/framework/blob/9988969fdfdf69540b3cb54a04cd70b21457f1fc/LICENSE[MIT]
+|Upto 07.08.2020 https://github.com/MarcelCoding/nova/blob/9988969fdfdf69540b3cb54a04cd70b21457f1fc/LICENSE[MIT]
 |===
 
 == Third Party Licenses
