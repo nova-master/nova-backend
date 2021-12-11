@@ -1,7 +1,7 @@
 = Nova Framework
 
-image:https://img.shields.io/github/v/tag/getnova/framework?label=latest%20version&style=flat-square[latest version,link=https://github.com/getnova/framework/releases]
-image:https://img.shields.io/github/workflow/status/getnova/framework/CI?label=CI&style=flat-square[CI,link=https://github.com/getnova/framework/actions]
+image:https://img.shields.io/github/v/tag/MarcelCoding/nova?label=latest%20version&style=flat-square[latest version,link=https://github.com/MarcelCoding/nova/releases]
+image:https://img.shields.io/github/workflow/status/MarcelCoding/nova/CI?label=CI&style=flat-square[CI,link=https://github.com/MarcelCoding/nova/actions]
 
 Nova Framework is a framework on top of spring boot.
 It aims to provide nice additions to the spring ecosystem.
@@ -17,7 +17,7 @@ Nova aims to provide out of the box compatibility for https://github.com/spring-
 
 Currently, the latest version is:
 
-image:https://img.shields.io/github/v/tag/getnova/framework?label=latest%20version&style=flat-square[latest version,link=https://github.com/getnova/framework/releases]
+image:https://img.shields.io/github/v/tag/MarcelCoding/nova?label=latest%20version&style=flat-square[latest version,link=https://github.com/MarcelCoding/nova/releases]
 
 [source,groovy]
 ----
