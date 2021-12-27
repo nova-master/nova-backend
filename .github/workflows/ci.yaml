@@ -7,7 +7,8 @@ on:
   pull_request:
 
 env:
-  JAVA_VERSION: 11
+  JAVA_VERSION: 17
+  JAVA_DISTRO: temurin
 
 jobs:
   lint:
@@ -28,8 +29,8 @@ jobs:
       - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -71,8 +72,8 @@ jobs:
       - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -98,8 +99,8 @@ jobs:
       - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -112,7 +113,8 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [ 11, 16 ]
+        java-version: [ 17 ]
+        java-distro: [ temurin, zulu, liberica, microsoft ]
 
     steps:
       - uses: actions/checkout@v2
@@ -122,15 +124,15 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-${{ matrix.java-distro }}-${{ matrix.java-version }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            ${{ runner.os }}-gradle-${{ matrix.java-distro }}-${{ matrix.java-version }}-
 
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ matrix.java-version }}
+          distribution: ${{ matrix.java-distro }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -157,8 +159,8 @@ jobs:
       - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -192,8 +194,8 @@ jobs:
       - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew

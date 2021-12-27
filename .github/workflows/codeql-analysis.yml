@@ -15,7 +15,8 @@ on:
     - cron: '0 10 * * 1' # every monday at 10 am UTC
 
 env:
-  JAVA_VERSION: 11
+  JAVA_VERSION: 17
+  JAVA_DISTRO: temurin
 
 jobs:
   analyze:
@@ -29,8 +30,8 @@ jobs:
       - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v2
         with:
-          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
