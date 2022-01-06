@@ -204,7 +204,7 @@ jobs:
         run: ./gradlew publishNebulaPublicationToLocalRepoRepository --stacktrace --no-daemon
 
       - name: Publish
-        uses: JamesIves/github-pages-deploy-action@4.1.8
+        uses: JamesIves/github-pages-deploy-action@4.2.0
         with:
           repository-name: marcel-repos/mvn
           branch: main # The branch the action should deploy to.
