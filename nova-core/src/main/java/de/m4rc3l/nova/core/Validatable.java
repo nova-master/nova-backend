@@ -1,7 +1,6 @@
 package de.m4rc3l.nova.core;
 
 import de.m4rc3l.nova.core.exception.ValidationException;
-import de.m4rc3l.nova.core.utils.ValidationUtils;
 
 public interface Validatable {
 
