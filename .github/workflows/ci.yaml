@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2
         with:
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2
         with:
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2
         with:
@@ -117,7 +117,7 @@ jobs:
         java-distro: [ temurin, zulu, liberica, microsoft ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2
         with:
@@ -145,7 +145,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2
         with:
@@ -174,10 +174,10 @@ jobs:
     if: ${{ github.event_name != 'pull_request' }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Checkout maven repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: marcel-repos/mvn
           path: ./mvn-repo
