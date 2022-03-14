@@ -61,8 +61,8 @@ public final class ValidationUtils {
   }
 
   public static void pattern(final String property, final CharSequence value, final Pattern pattern) {
-    if (value != null && pattern.matcher(value).matches()) {
-      throw new ValidationException(property, "MATCH_PAtTERN");
+    if (value != null && !pattern.matcher(value).matches()) {
+      throw new ValidationException(property, "MATCH_PATTERN");
     }
   }
 }
