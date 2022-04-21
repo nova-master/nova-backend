@@ -15,11 +15,12 @@ on:
     - cron: '0 10 * * 1' # every monday at 10 am UTC
 
 env:
-  JAVA_VERSION: 17
+  JAVA_VERSION: 18
   JAVA_DISTRO: temurin
 
 jobs:
   analyze:
+    if: false
     name: Analyze
     runs-on: ubuntu-latest
 

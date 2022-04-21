@@ -48,7 +48,7 @@ See deployment for notes on how to deploy the project on a live system.
 What things you need to install the software and how to install them
 
 * a Java IDE (https://www.jetbrains.com/idea/[IntelliJ IDEA])
-* https://adoptium.net/[JDK 17] or higher
+* https://adoptium.net/[JDK 18] or higher
 * https://git-scm.com/[Git]
 
 === Installing
