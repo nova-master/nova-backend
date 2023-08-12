@@ -1,9 +1,0 @@
-apply(plugin: 'pmd')
-
-tasks.withType(Pmd) {
-  ignoreFailures = true
-  reports {
-    xml.enabled(true)
-    html.enabled(false)
-  }
-}

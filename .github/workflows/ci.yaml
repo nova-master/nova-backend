@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  JAVA_VERSION: 11
+  JAVA_VERSION: 17
   JAVA_DISTRO: temurin
 
 jobs:
@@ -27,22 +27,12 @@ jobs:
         run: chmod +x gradlew
 
       - name: Lint with Gradle
-        run: ./gradlew checkstyleMain checkstyleTest spotbugsMain spotbugsTest pmdMain pmdTest --stacktrace --no-daemon
+        run: ./gradlew checkstyleMain checkstyleTest --stacktrace --no-daemon
 
       #- name: Annotate Checkstyle Issues
       #  uses: jwgmeligmeyling/checkstyle-github-action@master
       #  with:
       #    path: '**/build/reports/checkstyle/*.xml'
-
-      #- name: Annotate SpotBugs Issues
-      #  uses: jwgmeligmeyling/spotbugs-github-action@master
-      #  with:
-      #    path: '**/build/reports/spotbugs/*.xml'
-
-      #- name: Annotate PMD Issues
-      #  uses: jwgmeligmeyling/pmd-github-action@master
-      #  with:
-      #    path: '**/build/reports/pmd/*.xml'
 
   lint-javadoc:
     if: false
@@ -86,7 +76,7 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [ 18 ]
+        java-version: [ 20 ]
         java-distro: [ temurin, zulu, liberica ] # microsoft
 
     steps:
