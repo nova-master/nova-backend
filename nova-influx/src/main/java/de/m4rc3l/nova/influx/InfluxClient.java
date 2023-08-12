@@ -17,10 +17,21 @@ import de.m4rc3l.nova.influx.excpetion.InfluxInvalidRequest;
 import de.m4rc3l.nova.influx.excpetion.InfluxPayloadToLargeException;
 import de.m4rc3l.nova.influx.excpetion.InfluxQuotaException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE;
+import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
+import static org.springframework.http.HttpStatus.TOO_MANY_REQUESTS;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 public class InfluxClient {
 
@@ -99,29 +110,25 @@ public class InfluxClient {
   }
 
   private <T> Mono<T> handleResponse(final ClientResponse response, final Supplier<Mono<T>> success) {
-    switch (response.statusCode()) {
-      case NO_CONTENT:
-        return Mono.empty();
-      case OK:
-        return success.get();
-      case BAD_REQUEST:
-        return this.createException(response, InfluxInvalidRequest::new);
-      case UNAUTHORIZED:
-      case FORBIDDEN:
-        return this.createException(response, InfluxAuthException::new);
-      case NOT_FOUND:
-      case PAYLOAD_TOO_LARGE:
-        return this.createException(response, InfluxPayloadToLargeException::new);
-      case TOO_MANY_REQUESTS:
-      case SERVICE_UNAVAILABLE:
-        final List<String> retryAfter = response.headers().header(HttpHeaders.RETRY_AFTER); // seconds
+    HttpStatusCode httpStatusCode = response.statusCode();
+    if (httpStatusCode.equals(NO_CONTENT)) {
+      return Mono.empty();
+    } else if (httpStatusCode.equals(OK)) {
+      return success.get();
+    } else if (httpStatusCode.equals(BAD_REQUEST)) {
+      return this.createException(response, InfluxInvalidRequest::new);
+    } else if (httpStatusCode.equals(UNAUTHORIZED) || httpStatusCode.equals(FORBIDDEN)) {
+      return this.createException(response, InfluxAuthException::new);
+    } else if (httpStatusCode.equals(NOT_FOUND) || httpStatusCode.equals(PAYLOAD_TOO_LARGE)) {
+      return this.createException(response, InfluxPayloadToLargeException::new);
+    } else if (httpStatusCode.equals(TOO_MANY_REQUESTS) || httpStatusCode.equals(SERVICE_UNAVAILABLE)) {
+      final List<String> retryAfter = response.headers().header(HttpHeaders.RETRY_AFTER); // seconds
 
-        return retryAfter.size() == 0
-          ? Mono.error(new InfluxQuotaException())
-          : Mono.error(new InfluxQuotaException(Long.parseLong(retryAfter.get(0))));
-      default:
-        return this.createException(response, InfluxException::new);
+      return retryAfter.size() == 0
+        ? Mono.error(new InfluxQuotaException())
+        : Mono.error(new InfluxQuotaException(Long.parseLong(retryAfter.get(0))));
     }
+    return this.createException(response, InfluxException::new);
   }
 
   private <T> Mono<T> createException(final ClientResponse response, final Function<String, InfluxException> ex) {

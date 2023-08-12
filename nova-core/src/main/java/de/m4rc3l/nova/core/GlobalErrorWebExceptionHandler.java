@@ -73,7 +73,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
 
       if (property.isPresent()) {
         return new HttpError(
-          exception.getStatus(),
+          (HttpStatus) exception.getStatusCode(),
           "BAD_INPUT",
           exception.getReason(),
           Map.of("property", property.get())
@@ -81,7 +81,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
       }
 
       return new HttpError(
-        exception.getStatus(),
+        (HttpStatus) exception.getStatusCode(),
         "BAD_INPUT",
         exception.getReason()
       );
@@ -90,11 +90,11 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
       final ResponseStatusException exception = (ResponseStatusException) cause;
 
       if (this.properties.getIncludeMessage() == IncludeAttribute.NEVER || exception.getReason() == null) {
-        return new HttpError(exception.getStatus(), "BASIC");
+        return new HttpError((HttpStatus) exception.getStatusCode(), "BASIC");
       }
 
       return new HttpError(
-        exception.getStatus(),
+        (HttpStatus) exception.getStatusCode(),
         "UNKNOWN",
         exception.getReason()
       );

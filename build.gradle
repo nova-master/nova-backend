@@ -17,6 +17,8 @@ plugins {
 
   id 'io.spring.nohttp' version '0.0.11'
   id 'io.freefair.javadoc-links' version "${freefairVersion}"
+
+  id 'org.hibernate.orm' version '6.2.7.Final' apply false
 }
 
 def gitVer = gitVersion()
@@ -42,8 +44,6 @@ subprojects {
   apply from: "${rootDir}/gradle/lombok.gradle"
   apply from: "${rootDir}/gradle/test.gradle"
   apply from: "${rootDir}/gradle/checkstyle.gradle"
-  apply from: "${rootDir}/gradle/spotbugs.gradle"
-  apply from: "${rootDir}/gradle/pmd.gradle"
   apply from: "${rootDir}/gradle/javadoc.gradle"
   apply from: "${rootDir}/gradle/publish.gradle"
 }
