@@ -15,7 +15,7 @@ on:
     - cron: '0 10 * * 1' # every monday at 10 am UTC
 
 env:
-  JAVA_VERSION: 18
+  JAVA_VERSION: 20
   JAVA_DISTRO: temurin
 
 jobs:
