@@ -6,8 +6,8 @@ tasks.withType(Checkstyle) {
   exclude('**/module-info.java')
   ignoreFailures = true
   reports {
-    xml.enabled(true)
-    html.enabled(false)
+    xml.required = true
+    html.required = false
   }
 }
 

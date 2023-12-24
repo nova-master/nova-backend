@@ -76,8 +76,8 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [ 20 ]
-        java-distro: [ temurin, zulu, liberica ] # microsoft
+        java-version: [ 21 ]
+        java-distro: [ temurin ]
 
     steps:
       - uses: actions/checkout@v3
